@@ -1,0 +1,51 @@
+<h1>
+    Code number activity search angine
+</h1>
+<code class="notes-container">
+        <pre>NOTES: 
+            This search angine execute search for companies only when user selection is 4th category code of cna
+
+            USAGE: 
+            1. You can search by cna code (ex. 08122201)
+            2. Suggested categories by name '4th category code' (ex. Παραγωγή )
+            3. Beta version of suggetions 1 - 3 category code (ex. search with 'αερί' )
+
+            FEATURE TODO LIST: 
+            1. Optimase search with greeklish, case sensitive
+            2. Test real data for suggestions mechanism
+            
+        </pre>
+</code>
+
+<div class="main-page">
+
+    <div class="cna-form-container">
+        <form class="cna-form" action="">
+            <input [value]="searchInput" class="cna-input" autocomplete="off"
+                (keyup)="onInputChange($event.target.value)" id="name" placeholder="Search" />
+            <ul class="cna-suggestions" *ngIf="suggestions.length >0">
+                <li class="cna-suggestion" *ngFor="let suggestion of suggestions" (click)="selectSuggetion(suggestion)">
+                    <div class="cna-suggestion-title" [innerHtml]="hilightText(suggestion.title, searchInput)"></div>
+                    <div class="cna-suggestion-desc">
+                        ({{suggestion.level}}) ΚΑΔ:<span [innerHtml]="hilightText(suggestion.cna, searchInput)"></span>
+                    </div>
+
+                </li>
+            </ul>
+        </form>
+    </div>
+
+    <div class="list-container" *ngIf="companies.length >0">
+        <div class="list-sub-title">
+            {{selectedSuggetion.title}} | <small>ΚΑΔ:{{selectedSuggetion.cna}}</small>
+        </div>
+        <div class="list-item" *ngFor="let company of companies">
+            {{company.name}}
+        </div>
+        <div class="text-center">
+            <button class="inherit-button" (click)="nextPage()">load more</button>
+        </div>
+    </div>
+
+
+</div>

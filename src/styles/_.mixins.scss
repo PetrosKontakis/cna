@@ -1,0 +1,11 @@
+@mixin shadow-depth($depth, $color) {
+    -webkit-box-shadow: $depth $color;
+    -moz-box-shadow: $depth $color;
+    box-shadow: $depth $color;
+}
+@mixin transition() {
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
